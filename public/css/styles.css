@@ -1,0 +1,186 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+:root{
+  --bs-primary-color:#342e55;
+}
+
+/* p{
+  margin: 0;
+  padding: 0;
+} */
+
+.section-headline{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 300;
+}
+
+.btn-2{
+  background-color:var(--bs-primary-color);
+  border: 2px solid var(--bs-primary-color);
+  padding: 8px;
+  border-radius: 10px !important;
+  font-size: 18px;
+  color:white;
+}
+button{
+  background-color: white;
+  border: 2px solid var(--bs-primary-color);
+  padding: 8px;
+  border-radius: 10px !important;
+  font-size: 26px;
+  color:var(--bs-primary-color);
+}
+
+button:hover{
+  background-color: var(--bs-primary-color);
+  color: white;
+}
+
+
+/* trend page design */
+
+.trend-section{
+  height: fit-content;
+}
+
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  width: 100%;
+  height:inherit;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+}
+.chart canvas{
+  width: inherit;
+  height: inherit;
+}
+
+/* dropdown-style */
+
+.custom-dropdown {
+  /* Add your custom dropdown styling here */
+  width: 100%;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 4px; */
+  /* padding: 4px; */
+}
+
+.custom-dropdown label{
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.custom-dropdown select ,input{
+  padding: 10px;
+  font-size: 17px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: transparent;
+  /* appearance: none; */
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
+}
+
+.custom-dropdown .dropdown-menu {
+  /* Custom styles for the dropdown menu */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.custom-dropdown .dropdown-menu li {
+  /* Custom styles for the dropdown menu items */
+  padding: 4px;
+  cursor: pointer;
+}
+
+.custom-dropdown .dropdown-menu li:hover {
+  background-color: #f2f2f2;
+}
+
+
+
+/* Navbar style  */
+
+.bg-color{
+  background-color: var(--bs-primary-color);
+}
+
+
+
+
+.bg-color{
+  background-color: var(--bs-primary-color);
+}
+
+.nav-link{
+  font-size: 20px !important;
+  color: white !important;
+  font-weight: 300 !important;
+}
+
+.navbar-toggler{
+  background-color: white !important;
+}
+
+
+.intro-section{
+width: 100vw;
+height: 75vh;
+background-color: #cac3fa;
+position: relative;
+}
+
+.img-fluid{
+  width: 350px;
+  border: 2px solid var(--bs-primary-color);
+}
+
+.custom-shape-divider-bottom-1688563167 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1688563167 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 90px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1688563167 .shape-fill {
+  fill: #FFFFFF;
+}
+
+
+/* RESPONSIVE CODE  */
+
+@media(max-width:995px) {
+  .intro-section{
+    height: fit-content;
+    padding-bottom: 100px;
+  }
+}
+
+@media(max-width:390px) {
+  .navbar-brand{
+    font-size: 28px !important;
+  } 
+}

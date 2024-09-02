@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOSAA Data Analysis Portal</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <%- include ('navbar'); -%>
+
+  <!-- INTRO SECTION  -->
+
+  <section class="intro-section">
+    <div class="container">
+      <div class="row pt-5">
+
+        <div
+          class=" mt-lg-0  text-center text-lg-start order-lg-0 order-1 col-12 text-capitalize col-md-12 col-lg-6 d-flex flex-column justify-content-center">
+          <h1 class="text-capitalize fw-bolder section-headline text-lg-start text-center">welcome!</h1>
+          <p class="mt-3 mb-5 para-width text-light-grey fw-lighter">As we all know how tedious and difficult it becomes to find authentic information about the institutes we want to get into during counselling. To solve this problem we have come up with this website which directly provides the crucial information for counselling.We can help you with</p>
+          <ol>
+            <li><p class="text-start">Get to know best option based on your rank</p></li>
+            <li><p class="text-start">Your best college based on your rank</p></li>
+            <li><p class="text-start">Your best choice based on your rank</p></li>
+          </ol>
+          <div class="text-center w-100 text-lg-start text-center">
+            <a href="/about"><button class="btn-2" data-bs-toggle="tooltip"
+              data-bs-title="about us">About us</button></a>
+          </div>
+        </div>
+     
+
+      <div class="col-12 col-md-12 col-lg-6 order-0 order-lg-1">
+        <div class="text-center text-lg-end">
+          <img src="images/logo2.gif" class="img-fluid rounded-4" alt="">
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <div class="custom-shape-divider-bottom-1688563167">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+  </div>
+  </section>
+
+
+  <!-- ALL DATA SECTION  -->
+
+
+
+  <!-- OR-CR TREND -->
+
+  <section class="trend-section mt-5 mb-5" id="trend-section">
+
+    <h1 class="section-headline text-center p-3">
+      <i class="fa-solid fa-graduation-cap" style="color: #2c1376;"></i>
+      Analyze the 7-year trend of Opening and Closing Ranks for a specific branch.
+      <i class=" fa fa-duotone fa-building-columns"></i>
+        </h1>
+
+    <div class="container pt-5">
+      <div class="row">
+
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-start">
+          <div class="dropdowns gap-4">
+            <div class="custom-dropdown d-flex flex-column">
+              <label for="college">*Select College*</label>
+              <select id="firstDropdown" class="fw-lighter" onchange="handleFirstDropdownChange()">
+                <option value="">Select an option</option>
+                <% it.forEach(option=> { %>
+                  <option value="<%= option %>">
+                    <%= option %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="custom-dropdown">
+              <label for="college">*Select Branch*</label>
+              <select id="secondDropdown" class="fw-lighter" onchange="handleSecondDropdownChange()">
+                <option value="">Select an option</option>
+                <% it.forEach(option=> { %>
+                  <option value="<%= option %>">
+                    <%= option %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="custom-dropdown">
+              <label for="college">*Select category*</label>
+              <select id="thirdDropdown" class="fw-lighter" onchange="handleThirdDropdownChange()">
+                <option value="">Select an option</option>
+                <% it.forEach(option=> { %>
+                  <option value="<%= option %>">
+                    <%= option %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="custom-dropdown">
+              <label for="college">*Select gender*</label>
+              <select id="fourthDropdown" class="fw-lighter">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+
+            <button onclick="getData()">Get Analysis</button>
+
+          </div>
+        </div>
+
+
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-start">
+
+          <div class="chart">
+            <p class="text-center" id="r">Enter Details To Get Chart Here !</p>
+            <canvas id="myChart"></canvas>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- RANKWISE COLLEGE -->
+
+
+
+
+  <section class="rank-wise-section mb-5" id="rank-wise-section">
+    <h1 class="section-headline text-center p-3">
+      <i class="fa-solid fa-graduation-cap" style="color: #2c1376;"></i>
+      Know the most suitable option based on your Rank
+      <i class="fa-solid fa-ranking-star" style="color: #2c1376;"></i>
+    </h1>
+    <div class="container">
+
+    <form id="myForm">
+      <div class="row">
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown d-flex flex-column">
+            <label for="rank">*Your Rank*</label>
+            <input id="inputRank" type="number" placeholder="Rank">
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown">
+            <label for="college">*Select category*</label>
+            <select id="thirdDropdown2" class="fw-lighter" onchange="handleThirdDropdownChange()">
+              <option value="">Select an option</option>
+              <option value="OPEN (PwD)">OPEN (PwD)</option>
+              <option value="OPEN">OPEN</option>
+              <option value="SC">SC</option>
+              <option value="OBC-NCL">OBC-NCL</option>
+              <option value="OBC-NCL (PwD)">OBC-NCL (PwD)</option>
+              <option value="ST">ST</option>
+              <option value="ST (PwD)">ST (Pwd)</option>
+              <option value="SC (PwD)">SC (PwD)</option>
+              <option value="EWS">EWS</option>
+              <option value="EWS (PwD)">EWS (PwD)</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown">
+            <label for="college">*Select Gender*</label>
+            <select id="fourthDropdown2" class="fw-lighter">
+              <option value="">Select an option</option>
+              <option value="Gender-Neutral">Gender-Neutral</option>
+              <option value="Female-only (including Supernumerary)">Female-only (including Supernumerary)</option>
+            </select>
+          </div>
+        </div>
+        <div class="container">
+          <button class="my-4 text-center" onclick="getCollege()" style="width:fit-content">Show College Suggestions</button>
+          
+        </div>
+         
+
+          <table id="resultTable" class="table">
+            <thead>
+              <tr>
+                <th>Opening Rank</th>
+                <th>Closing Rank</th>
+                <th>Institute</th>
+                <th>Academic Program</th>
+                <th>Round</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+    </form>
+    
+
+  </div>
+  </section>
+
+
+
+  <!-- BRANCHWISE COLLEGE -->
+
+
+
+
+  <section class="rank-wise-section mb-5" id="branch-wise-section">
+    <h1 class="section-headline text-center p-3">
+      <i class="fa-solid fa-graduation-cap" style="color: #2c1376;"></i>
+      Know the most suitable option based on your Interest
+      <i class="fa-solid fa-ranking-star" style="color: #2c1376;"></i>
+    </h1>
+    <div class="container">
+
+    <form id="myForm2">
+      <div class="row">
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown d-flex flex-column">
+            <label for="rank">*Your Rank*</label>
+            <input id="inputRank1" type="number" placeholder="Rank">
+          </div>
+        </div>
+        <div class="custom-dropdown d-flex flex-column">
+          <label for="college">*Select Branch*</label>
+          <select id="inputBranch" class="fw-lighter">
+            <option value="">Select an option</option>
+            <% bc.forEach(option=> { %>
+              <option value="<%= option %>">
+                <%= option %>
+              </option>
+              <% }); %>
+          </select>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown">
+            <label for="college">*Select category*</label>
+            <select id="thirdDropdown3" class="fw-lighter" onchange="handleThirdDropdownChange()">
+              <option value="">Select an option</option>
+              <option value="OPEN (PwD)">OPEN (PwD)</option>
+              <option value="OPEN">OPEN</option>
+              <option value="SC">SC</option>
+              <option value="OBC-NCL">OBC-NCL</option>
+              <option value="OBC-NCL (PwD)">OBC-NCL (PwD)</option>
+              <option value="ST">ST</option>
+              <option value="ST (PwD)">ST (Pwd)</option>
+              <option value="SC (PwD)">SC (PwD)</option>
+              <option value="EWS">EWS</option>
+              <option value="EWS (PwD)">EWS (PwD)</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4">
+          <div class="custom-dropdown">
+            <label for="college">*Select Gender*</label>
+            <select id="fourthDropdown3" class="fw-lighter">
+              <option value="">Select an option</option>
+              <option value="Gender-Neutral">Gender-Neutral</option>
+              <option value="Female-only (including Supernumerary)">Female-only (including Supernumerary)</option>
+            </select>
+          </div>
+        </div>
+        <div class="container">
+          <button class="my-4" onclick="getBranch()" style="width:fit-content">Show Branch based College Suggestions</button>
+        </div>
+         
+
+          <table id="resultTable2" class="table">
+            <thead>
+              <tr>
+                <th>Opening Rank</th>
+                <th>Closing Rank</th>
+                <th>Institute</th>
+                <th>Academic Program</th>
+                <th>Round</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+    </form>
+    
+
+  </div>
+  </section>
+
+
+
+  <!-- SCRIPT -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a16eebca31.js" crossorigin="anonymous"></script>
+
+
+  <script>
+
+    function handleFirstDropdownChange() {
+      var firstDropdown = document.getElementById('firstDropdown');
+      var selectedOption = firstDropdown.value;
+
+      // Send AJAX request to the backend with the selected value
+      fetch('/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedOption })
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Update the second dropdown menu with the response data
+          var secondDropdown = document.getElementById('secondDropdown');
+          secondDropdown.innerHTML = '<option value="">Select an option</option>';
+
+          data.forEach(option => {
+            var optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.textContent = option;
+            secondDropdown.appendChild(optionElement);
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+
+    function handleSecondDropdownChange() {
+      var secondDropdown = document.getElementById('secondDropdown');
+      var selectedOption2 = secondDropdown.value;
+
+      // Send AJAX request to the backend with the selected value
+      fetch('/sub', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedOption2 })
+      })
+        .then(response => response.json())
+        .then(data => {
+
+          var thirdDropdown = document.getElementById('thirdDropdown');
+          thirdDropdown.innerHTML = '<option value="">Select an option</option>';
+
+          data.forEach(option => {
+            var optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.textContent = option;
+            thirdDropdown.appendChild(optionElement);
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function handleThirdDropdownChange() {
+      var thirdDropdown = document.getElementById('thirdDropdown');
+      var selectedOption3 = thirdDropdown.value;
+
+      // Send AJAX request to the backend with the selected value
+      fetch('/cat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedOption3 })
+      })
+        .then(response => response.json())
+        .then(data => {
+
+          var fourthDropdown = document.getElementById('fourthDropdown');
+          fourthDropdown.innerHTML = '<option value="">Select an option</option>';
+
+          data.forEach(option => {
+            var optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.textContent = option;
+            fourthDropdown.appendChild(optionElement);
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+
+    function getData() {
+      var selectedCollege = document.getElementById('firstDropdown').value;
+      var selectedCourse = document.getElementById('secondDropdown').value;
+      var selectedCategory = document.getElementById('thirdDropdown').value;
+      var selectedGender = document.getElementById('fourthDropdown').value;
+
+
+      if (selectedCategory && selectedCollege && selectedCourse && selectedGender) {
+
+        // Send AJAX request to the backend with the selected values
+        fetch('/backendRoute', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            college: selectedCollege,
+            course: selectedCourse,
+            category: selectedCategory,
+            gender: selectedGender
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Extract the year and opening rank arrays from the response data
+            var years = data.dyears;
+            var openingRanks = data.dopeningranks;
+            var closingRanks = data.dclosingranks;
+
+            var ctx = document.getElementById('myChart');
+            if (years.length > 0 && openingRanks.length > 0) {
+              // Use the year and opening rank arrays in your Chart.js code
+              var ctx = document.getElementById('myChart').getContext('2d');
+
+
+              // destroying existing chart
+
+              let chartStatus = Chart.getChart("myChart"); // <canvas> id
+              if (chartStatus != undefined) {
+                chartStatus.destroy();
+              }
+              var e = document.getElementById('r');
+              e.style.display = "none";
+
+              var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: years,
+                  datasets: [{
+                    label: 'Opening Rank',
+                    data: openingRanks,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                  },
+                  {
+                    label: 'Closing Rank',
+                    data: closingRanks,
+                    borderColor: 'rgb(255,0,0)',
+                    tension: 0.1
+                  }]
+                },
+                options: {
+
+                  // Chart options
+                }
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+      else {
+        alert("Select All The Fields");
+      }
+    }
+
+
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+      var selectedRank = document.getElementById('inputRank').value;
+      var selectedCategory = document.getElementById('thirdDropdown2').value;
+      var selectedGender = document.getElementById('fourthDropdown2').value;
+
+      if(selectedRank && selectedCategory && selectedGender){
+        fetch('/checkCollege', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          rank: selectedRank,
+          category: selectedCategory,
+          gender: selectedGender
+         })
+      })
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#resultTable tbody');
+
+      // Clear the table body
+      tableBody.innerHTML = '';
+
+      // Iterate over the data and create table rows
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+
+        // Create table cells and set their values
+        const openingRankCell = document.createElement('td');
+        openingRankCell.textContent = row.Opening_Rank;
+        tr.appendChild(openingRankCell);
+
+        const closingRankCell = document.createElement('td');
+        closingRankCell.textContent = row.Closing_Rank;
+        tr.appendChild(closingRankCell);
+
+        const instituteCell = document.createElement('td');
+        instituteCell.textContent = row.Institute;
+        tr.appendChild(instituteCell);
+
+        const instituteBranch = document.createElement('td');
+        instituteBranch.textContent = row.Academic_Program_Name;
+        tr.appendChild(instituteBranch);
+
+        const roundCell = document.createElement('td');
+        roundCell.textContent = row.Round;
+        tr.appendChild(roundCell);
+
+        // Append the table row to the table body
+        tableBody.appendChild(tr);
+
+        });
+      })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+      else{
+        alert("Select All The Fields");
+      }
+      
+
+   });
+
+
+   document.getElementById('myForm2').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+      var selectedRank1 = document.getElementById('inputRank1').value;
+      var selectedBranch1 = document.getElementById('inputBranch').value;
+      var selectedCategory1 = document.getElementById('thirdDropdown3').value;
+      var selectedGender1 = document.getElementById('fourthDropdown3').value;
+
+      if(selectedRank1 && selectedCategory1 && selectedGender1 && selectedBranch1){
+        fetch('/checkBranch', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          rank: selectedRank1,
+          branch: selectedBranch1,
+          category: selectedCategory1,
+          gender: selectedGender1
+         })
+      })
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#resultTable2 tbody');
+
+      // Clear the table body
+      tableBody.innerHTML = '';
+
+      // Iterate over the data and create table rows
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+
+        // Create table cells and set their values
+        const openingRankCell = document.createElement('td');
+        openingRankCell.textContent = row.Opening_Rank;
+        tr.appendChild(openingRankCell);
+
+        const closingRankCell = document.createElement('td');
+        closingRankCell.textContent = row.Closing_Rank;
+        tr.appendChild(closingRankCell);
+
+        const instituteCell = document.createElement('td');
+        instituteCell.textContent = row.Institute;
+        tr.appendChild(instituteCell);
+
+        const instituteBranch = document.createElement('td');
+        instituteBranch.textContent = row.Academic_Program_Name;
+        tr.appendChild(instituteBranch);
+
+        const roundCell = document.createElement('td');
+        roundCell.textContent = row.Round;
+        tr.appendChild(roundCell);
+
+        // Append the table row to the table body
+        tableBody.appendChild(tr);
+
+        });
+      })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+      else{
+        alert("Select All The Fields");
+      }
+      
+
+   });
+
+  </script>
+
+</body>
+
+</html>
